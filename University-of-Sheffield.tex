@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage[toc,page]{appendix}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{lipsum}
+\usepackage{caption}
+\usepackage{moreverb}
+
+\immediate\write18{texcount mainbody.tex -inc -incbib -sum -1 > /tmp/wordcount.tex}
+
+\begin{document}
+
+\captionsetup[figure]{margin=1.5cm,font=small,labelfont={bf},name={Figure},labelsep=colon,textfont={it}}
+\captionsetup[table]{margin=1.5cm,font=small,labelfont={bf},name={Table},labelsep=colon,textfont={it}}
+\setlipsumdefault{1}
+
+\begin{titlepage}
+
+\begin{center}
+{\LARGE University of Sheffield}\\[1.5cm]
+\linespread{1.2}\huge {\bfseries Title}\\[1.5cm]
+\linespread{1}
+\includegraphics[width=5cm]{images/tuoslogo.png}\\[1cm]
+{\Large Name}\\[1cm]
+
+\today\\
+{\Large Word Count: }\input{/tmp/wordcount.tex}
+
+\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\input{mainbody.tex}
+
+% -------------------------------------------------------------------
+% Bibliography
+% -------------------------------------------------------------------
+
+\newpage
+\bibliography{ref}
+\bibliographystyle{apalike}
+
+
+\end{document}
